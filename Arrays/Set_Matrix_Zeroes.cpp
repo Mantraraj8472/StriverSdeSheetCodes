@@ -1,7 +1,7 @@
 #include <bits/stdc++.h> 
 void setZeros(vector<vector<int>> &matrix)
 {
-	// row - 1 is used for checking for each column correspoding to that cell
+    // row - 1 is used for checking for each column correspoding to that cell
     // col - 1 is used for checking for each row corresponding to that cell
     // As there will be conflict in case of matrix[0][0] we can use two var for row 1 and col 1
     int row = 0, col = 0, n = matrix.size(), m = matrix[0].size();
