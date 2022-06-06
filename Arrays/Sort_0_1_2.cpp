@@ -1,6 +1,7 @@
 #include <bits/stdc++.h> 
 void sort012(int *arr, int n)
 {
+    // Two pointer approach
     int l = 0, r = n - 1;
     for(int i = 0; i < n; i++){
         // Why this loop or why not loop for l?
