@@ -2,18 +2,18 @@
 
 pair<int,int> missingAndRepeating(vector<int> &arr, int n)
 {
-	// Basic concept is that use this given array as a hash array as the elements of the array lies in the range of [1, N]
+    // Basic concept is that use this given array as a hash array as the elements of the array lies in the range of [1, N]
     
-    for(int i = 0; i < n; i++){
-        int ele = arr[i] % (n + 1);
-        arr[ele - 1] += (n + 1);
-    }
-    pair<int, int> ans;
-    for(int i = 0; i < n; i++){
-        if(arr[i] <= n) ans.first = i + 1;
-        else if(arr[i] >= (2 * (n + 1))) ans.second = i + 1;
-    }
-    return ans;
+//     for(int i = 0; i < n; i++){
+//         int ele = arr[i] % (n + 1);
+//         arr[ele - 1] += (n + 1);
+//     }
+//     pair<int, int> ans;
+//     for(int i = 0; i < n; i++){
+//         if(arr[i] <= n) ans.first = i + 1;
+//         else if(arr[i] >= (2 * (n + 1))) ans.second = i + 1;
+//     }
+//     return ans;
 
     // Another method is using mathematical formula
     /*
@@ -28,8 +28,8 @@ pair<int,int> missingAndRepeating(vector<int> &arr, int n)
                  = (sa1n - s1n) * (R + M)
     so now we have R - M and R + M so we can easily find R and M.
     */
-    int s1n = (n * (n + 1)) / 2;
-    int ss1n = (n * (n + 1) * (2 * n + 1)) / 6;
+    long long int s1n = 0ll + (n * (n + 1ll)) / 2;
+    long long int ss1n = 0ll + (n * (n + 1ll) * (2 * n + 1ll)) / 6ll;
     long long int sa1n = 0ll, ssa1n = 0ll;
     for(int i = 0; i < n; i++){
         sa1n += arr[i];
