@@ -18,6 +18,9 @@
 
 *****************************************************************/
 
+// Problem link:
+// https://www.codingninjas.com/codestudio/problems/reverse-the-singly-linked-list_799897?topList=striver-sde-sheet-problems&leftPanelTab=0
+
 LinkedListNode<int> * reverse(LinkedListNode<int> *head){
     if(head == NULL or head->next == NULL) return head;
     LinkedListNode<int> *curNext = head->next;
