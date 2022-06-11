@@ -17,6 +17,9 @@
 
 *****************************************************************/
 
+// Problem link:
+// https://www.codingninjas.com/codestudio/problems/middle-of-linked-list_973250?topList=striver-sde-sheet-problems&leftPanelTab=0
+
 Node* getMid(Node *head){
     if(head == NULL or head->next == NULL) return head;
     Node *slow = head, *fast = head;
