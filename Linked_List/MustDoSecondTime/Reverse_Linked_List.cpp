@@ -18,9 +18,6 @@
 
 *****************************************************************/
 
-// Problem link:
-// https://www.codingninjas.com/codestudio/problems/reverse-the-singly-linked-list_799897?topList=striver-sde-sheet-problems&leftPanelTab=0
-
 LinkedListNode<int> * reverse(LinkedListNode<int> *head){
     if(head == NULL or head->next == NULL) return head;
     LinkedListNode<int> *curNext = head->next;
@@ -32,5 +29,33 @@ LinkedListNode<int> * reverse(LinkedListNode<int> *head){
 
 LinkedListNode<int> *reverseLinkedList(LinkedListNode<int> *head) 
 {
-    return reverse(head);
+    if(head == NULL or head->next == NULL) return head;
+//     return reverse(head);
+    
+    // Iterative approach
+//     LinkedListNode<int> *cur = head->next, *prev = head;
+//     prev->next = NULL;
+//     while(cur){
+//         LinkedListNode<int> *curNext = cur->next;
+//         cur->next = prev;
+//         prev = cur;
+//         cur = curNext;
+//     }
+//     return prev;
+    
+    // Iterative approach using stack
+    stack<LinkedListNode<int> *> st;
+    while(head){
+        st.push(head);
+        head = head->next;
+    }
+    LinkedListNode<int> *ans = st.top(), *temp = st.top();
+    st.pop();
+    while(st.size()){
+        temp->next = st.top();
+        st.pop();
+        temp = temp->next;
+    }
+    temp->next = NULL;
+    return ans;
 }
