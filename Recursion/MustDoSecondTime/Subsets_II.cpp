@@ -16,6 +16,17 @@ void solve(int ind, vector<int> &arr, vector<int> &temp, set<vector<int>> &tempA
     temp.pop_back();
 }
 
+void solve2(int ind, vector<int> &arr, vector<int> &temp, vector<vector<int>> &ans){
+    ans.push_back(temp);
+    for(int i = ind; i < arr.size(); i++){
+        if(i == ind or arr[i] != arr[i - 1]){
+            temp.push_back(arr[i]);
+            solve2(i + 1, arr, temp, ans);
+            temp.pop_back();
+        }
+    }
+}
+
 vector<vector<int>> uniqueSubsets(int n, vector<int> &arr)
 {
     // Using sets
@@ -30,23 +41,30 @@ vector<vector<int>> uniqueSubsets(int n, vector<int> &arr)
     // We can treat the duplicate elements as special elements. For example, if we have duplicate elements (5, 5), instead of treating them as two elements that are duplicate, we can treat it as one special element 5, but this element has more than two choices: you can either NOT put it into the subset, or put ONE 5 into the subset, or put TWO 5s into the subset. 
     // So if A[i] has a frequency of ‘F’, then there are F+1 choices.
     // Therefore, we are given an array (a1, a2, a3, ..., an) with each of them appearing (k1, k2, k3, ..., kn) times, the number of subsets is (k1+1)(k2+1)...(kn+1).
+//     vector<vector<int>> ans;
+//     ans.push_back({});
+//     sort(arr.begin(), arr.end());
+//     for(int i = 0; i < n; i++){
+//         int curI = i;
+//         int fre = 0;
+//         while(i < n and arr[i] == arr[curI]) i++, fre++;
+//         i--;
+//         int curSz = ans.size();
+//         for(int k = 0; k < curSz; k++){
+//             vector<int> subset = ans[k];
+//             for(int j = 1; j <= fre; j++){
+//                 subset.push_back(arr[curI]);
+//                 ans.push_back(subset);
+//             }
+//         }
+//     }
+//     sort(ans.begin(), ans.end());
+//     return ans;
+    
+    // Same above approach using recursion
     vector<vector<int>> ans;
-    ans.push_back({});
+    vector<int> temp;
     sort(arr.begin(), arr.end());
-    for(int i = 0; i < n; i++){
-        int curI = i;
-        int fre = 0;
-        while(i < n and arr[i] == arr[curI]) i++, fre++;
-        i--;
-        int curSz = ans.size();
-        for(int k = 0; k < curSz; k++){
-            vector<int> subset = ans[k];
-            for(int j = 1; j <= fre; j++){
-                subset.push_back(arr[curI]);
-                ans.push_back(subset);
-            }
-        }
-    }
-    sort(ans.begin(), ans.end());
+    solve2(0, arr, temp, ans);
     return ans;
 }
