@@ -20,6 +20,7 @@ double findNthRootOfM(int n, long long m) {
 //     return l;
     
     // Newton Raphson method
+    // Reference link: https://www.youtube.com/watch?v=rCoABot_tIE
     // x = m ^ (1 / n)
     // x ^ n = m
     // x ^ n - m = 0
