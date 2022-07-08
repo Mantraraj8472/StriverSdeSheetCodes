@@ -23,23 +23,7 @@ vector<int> slidingWindowMaximum(vector<int> &nums, int &k)
     deque<int> q;
     vector<int> ans;
     int n = nums.size();
-    for(int i = 0; i < k; i++){
-        if(q.empty())
-            q.push_back(i);
-        else{
-            if(nums[i] > nums[q.front()]){
-                q = deque<int>();
-                q.push_back(i);
-            }
-            else{
-                while(q.size() and nums[i] > nums[q.back()])
-                    q.pop_back();
-                q.push_back(i);
-            }
-        }
-    }
-    ans.push_back(nums[q.front()]);
-    for(int i = k; i < n; i++){
+    for(int i = 0; i < n; i++){
         while(q.size() and q.front() <= i - k)
             q.pop_front();
         if(q.empty())
@@ -55,7 +39,8 @@ vector<int> slidingWindowMaximum(vector<int> &nums, int &k)
                 q.push_back(i);
             }
         }
-        ans.push_back(nums[q.front()]);
+        if(i >= k - 1)
+            ans.push_back(nums[q.front()]);
     }
     return ans;
 }
